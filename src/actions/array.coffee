@@ -4,6 +4,7 @@ arity = require './arity'
 types = require './types'
 utils = require '../utils'
 seq = require '../utils/seq'
+Query = require '../Query'
 
 seqRE = /TABLE|SELECTION<ARRAY>/
 
@@ -118,7 +119,15 @@ actions.filter = (array, filter, options) ->
 
   # The native API returns the sequence when
   # the filter == neither an object nor function.
-  else return array
+  else
+    if typeof filter == 'function'
+      # This is such a hacky solution, but it works.
+      return array.filter (row) ->
+        queryRow = Query._expr row
+        result = filter (queryRow)
+        result._run()
+    else
+      return array
 
   return array.filter (row) ->
     for matcher in matchers

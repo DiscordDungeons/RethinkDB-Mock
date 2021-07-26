@@ -155,7 +155,7 @@ describe('Selection', function() {
 })
 
 // Test queries on an array of selections from a table.
-describe('Selection arrays', function() {
+describe.only('Selection arrays', function() {
   beforeAll(() =>
     db.init({
       users: [
@@ -259,12 +259,23 @@ describe('Selection arrays', function() {
     })
   })
 
-  describe('.filter()', () =>
+  describe('.filter()', () => {
     it('returns an array of rows matching the filter', function() {
       const query = users.filter({ gender: 'F' })
       const res = query._run().map(row => row.name)
       expect(res).toEqual(['Betsy', 'Sheila'])
-    }))
+    })
+
+    it('returns an array of rows matching a function filter', () => {
+      const query = users.filter((user) => {
+        return user('gender').eq('F')
+      })
+      const res = query._run().map(row => row.name)
+
+      expect(res).toEqual(['Betsy', 'Sheila'])
+    })
+  })
+    
 
   // it 'supports nested objects', ->
 
