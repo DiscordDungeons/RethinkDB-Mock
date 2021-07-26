@@ -1,9 +1,13 @@
 {
   "name": "@discorddungeons/rethinkdb-mock",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "main": "lib/index.js",
+  "private": false,
   "license": "MIT",
-  "repository": "discorddungeons/rethinkdb-mock",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiscordDungeons/rethinkdb-mock.git"
+  },
   "description": "Spec-compliant unit-testing for RethinkDB queries",
   "dependencies": {
     "is-plain-object": "^2.0.4",
@@ -18,6 +22,10 @@
     "jest": "^23.6.0",
     "prettier": "^1.14.2"
   },
+  "bugs": {
+    "url": "https://github.com/DiscordDungeons/rethinkdb-mock/issues"
+  },
+  "homepage": "https://github.com/DiscordDungeons/rethinkdb-mock#readme",
   "scripts": {
     "test": "jest",
     "build": "npx coffee -c -o lib src",

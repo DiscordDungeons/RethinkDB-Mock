@@ -33,7 +33,6 @@ actions.add = (result, args) ->
   return total
 
 actions.sub = (result, args) ->
-  console.log result, args
   utils.expect result, 'NUMBER'
   total = result
   for arg in args
