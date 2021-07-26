@@ -233,16 +233,19 @@ statics._do = (parent, args) ->
   return query
 
 statics._default = (parent, value) ->
-
   if !utils.isQuery value
     value = Query._expr value
 
   query = Query()
   query._parent = parent
+
+
   query._eval = (ctx) ->
     try result = parent._eval ctx
     catch error
-      throw error if !isNullError error
+      if !isNullError error
+        if !isNoRowContextError error
+          throw error
     return result ? value._eval ctx
   return query
 
@@ -376,6 +379,9 @@ isArrayOrObject = (value) ->
 
 isNullError = (error) ->
   !error or /(Index out of bounds|No attribute|null)/i.test error.message
+
+isNoRowContextError = (error) ->
+  !error or error.message == 'r.row is not defined in this context'
 
 hasQuery = (object) ->
   for key, value of object

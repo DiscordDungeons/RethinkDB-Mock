@@ -15,10 +15,28 @@ describe('r.row', function() {
       ],
     }))
 
-  it('works with `update`', function() {
-    const query = user1.update({ age: db.row('age').add(1) })
-    expect(query._run()).toEqual({ replaced: 1, unchanged: 0 })
-    expect(user1('age')._run()).toBe(24)
+  describe('It works with `update`', () => {
+    it('works with `update`', function() {
+      const query = user1.update({ age: db.row('age').add(1) })
+      expect(query._run()).toEqual({ replaced: 1, unchanged: 0 })
+      expect(user1('age')._run()).toBe(24)
+    })
+
+    it('works with nested field', () => {
+      const query = user1.update({
+        noField: db.row('noField').default(0).add(1)
+      })
+
+      const result = query._run()
+
+      console.log("result", result)
+
+      const noField = user1('noField')._run()
+
+      console.log("noField", noField)
+
+      expect(noField).toBe(1)
+    })
   })
 
   it('works with `replace`', function() {
