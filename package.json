@@ -14,12 +14,13 @@
   },
   "devDependencies": {
     "coffeelint": "^2.1.0",
-    "coffeescript": "^2.3.1",
+    "coffeescript": "^2.5.1",
     "jest": "^23.6.0",
     "prettier": "^1.14.2"
   },
   "scripts": {
-    "build": "coffee-build src -o lib",
+    "test": "jest",
+    "build": "npx coffee -c -o lib src",
     "prepare": "npm run build"
   },
   "files": [

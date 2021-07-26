@@ -9,7 +9,7 @@ const users = db.table('users')
 describe('Selection', function() {
   beforeAll(() =>
     db.init({
-      users: [{ id: 1, name: 'Alec' }, { id: 2, name: 'John' }],
+      users: [{ id: 1, name: 'Alec', age: 22 }, { id: 2, name: 'John', age: 14 }, {id: 3, name: 'Sam', age: 18}],
     }))
 
   describe('.replace()', function() {
@@ -118,6 +118,40 @@ describe('Selection', function() {
       expect(1).toBe(query._run().deleted)
       expect(null).toBe(user1._run())
     }))
+
+  describe('Math stuff', () => {
+    describe('.sub()', () => {
+      it('Should remove from the number and return new value', () => {
+        const res = users.get(3)('age').sub(2)._run()
+
+        expect(res).toEqual(16)
+      })
+    })
+
+    describe('.mul()', () => {
+      it('Should multiply the number and return new value', () => {
+        const res = users.get(3)('age').mul(2)._run()
+
+        expect(res).toEqual(18 * 2)
+      })
+    })
+
+    describe('.div()', () => {
+      it('Should divide the number and return new value', () => {
+        const res = users.get(3)('age').div(2)._run()
+
+        expect(res).toEqual(18 / 2)
+      })
+    })
+
+    describe('.add()', () => {
+      it('Should add to the number and return new value', () => {
+        const res = users.get(3)('age').add(2)._run()
+
+        expect(res).toEqual(20)
+      })
+    })
+  }) 
 })
 
 // Test queries on an array of selections from a table.

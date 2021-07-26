@@ -33,12 +33,13 @@ actions.add = (result, args) ->
   return total
 
 actions.sub = (result, args) ->
+  console.log result, args
   utils.expect result, 'NUMBER'
   total = result
   for arg in args
     utils.expect arg, 'NUMBER'
     total -= arg
-  return null
+  return total
 
 actions.mul = (result, args) ->
   utils.expect result, 'NUMBER'
@@ -46,7 +47,7 @@ actions.mul = (result, args) ->
   for arg in args
     utils.expect arg, 'NUMBER'
     total *= arg
-  return null
+  return total
 
 actions.div = (result, args) ->
   utils.expect result, 'NUMBER'
@@ -54,4 +55,4 @@ actions.div = (result, args) ->
   for arg in args
     utils.expect arg, 'NUMBER'
     total /= arg
-  return null
+  return total
