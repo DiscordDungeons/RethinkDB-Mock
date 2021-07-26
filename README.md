@@ -29,13 +29,13 @@ Check out the **Releases** tab for details about the newest versions.
 1. Install from Github:
 
 ```sh
-npm install --save-dev rethinkdb-mock
+npm install --save-dev @discorddungeons/rethinkdb-mock
 ```
 
 2. Put some boilerplate in your test environment:
 
 ```js
-const rethinkdb = require('rethinkdb-mock')
+const rethinkdb = require('@discorddungeons/rethinkdb-mock')
 
 // Replace `rethinkdbdash` with `rethinkdb-mock`
 const mock = require('mock-require')
@@ -216,13 +216,11 @@ If you have any questions, feel free to open an issue.
 
 ```sh
 # This tool compiles the `src` directory during `npm install`.
-npm install -g coffee-build
-
-git clone https://github.com/aleclarson/rethinkdb-mock
+git clone https://github.com/discorddungeons/rethinkdb-mock
 npm install
 
 # Manually compile the `src` directory after you make any changes.
-coffee -cb -o js src
+npm build
 ```
 
 &nbsp;

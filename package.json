@@ -1,9 +1,9 @@
 {
-  "name": "rethinkdb-mock",
-  "version": "0.7.1",
+  "name": "@discorddungeons/rethinkdb-mock",
+  "version": "0.7.2",
   "main": "lib/index.js",
   "license": "MIT",
-  "repository": "aleclarson/rethinkdb-mock",
+  "repository": "discorddungeons/rethinkdb-mock",
   "description": "Spec-compliant unit-testing for RethinkDB queries",
   "dependencies": {
     "is-plain-object": "^2.0.4",
